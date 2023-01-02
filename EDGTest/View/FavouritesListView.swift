@@ -14,8 +14,11 @@ struct FavouritesListView: View {
         ScrollView {
             LazyVGrid(columns:[GridItem(.flexible()), GridItem(.flexible())], alignment: .center, spacing: 10) {
                 ForEach(viewModel.products, id: \.id) { product in
-                    ListItemView(product: product).environmentObject(viewModel)
-                }
+                    NavigationLink {
+                        ProductDetailView(isFromFavourites: true, product: product)
+                    } label: {
+                        ListItemView(product: product, isFromFavourites: true)
+                    }                }
             }
             .background(Color(white: 0.9))
         }.onAppear {

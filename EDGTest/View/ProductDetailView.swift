@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    @EnvironmentObject var viewModel: ProductListViewModel
+    let isFromFavourites: Bool
     var product: Product
 
     var body: some View {
@@ -24,26 +24,40 @@ struct ProductDetailView: View {
                     .bold()
                     .multilineTextAlignment(.center)
             }
-            HStack(spacing: 10) {
-                Button(action: {
-                    // Add product to cart
-                }) {
-                    Text("Add to Cart")
-                }
-                Button(action: {
-                    viewModel.addToFavourites(product: product)
-                }) {
-                    Image(systemName: "heart")
-                }
+           
+            Button(action: {
+                // Add product to cart
+            }) {
+                Text("Add to Cart")
+                    .foregroundColor(.white)
+                    .padding()
+                    .bold()
+                    .background(Color.blue)
+                    .cornerRadius(4)
             }
         }
+        .lineSpacing(16)
         .padding()
         .navigationBarTitle(Text(product.title), displayMode: .inline)
         .navigationBarItems(trailing:
             Button(action: {
-                // toggle favorite status for product
+                if isFromFavourites {
+                    let viewModel = FavouritesViewModel()
+                    if product.isFavourites {
+                        viewModel.removeFromFavourites(product: product)
+                    } else {
+                        viewModel.addToFavourites(product: product)
+                    }
+                } else {
+                    let viewModel = ProductListViewModel()
+                    if product.isFavourites {
+                        viewModel.removeFromFavourites(product: product)
+                    } else {
+                        viewModel.addToFavourites(product: product)
+                    }
+                }
             }) {
-                Image(systemName: "heart")
+                Image(systemName: product.isFavourites ? "heart.fill" : "heart")
             }
         )
     }

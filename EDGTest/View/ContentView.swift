@@ -10,13 +10,15 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            ProductListView(viewModel: ProductListViewModel())
-                .tabItem {
+            NavigationView {
+                ProductListView(viewModel: ProductListViewModel())
+            }.tabItem {
                 Image(systemName: "cart")
                 Text("Product List")
             }
-            FavouritesListView(viewModel: FavouritesViewModel())
-                .tabItem {
+            NavigationView {
+                FavouritesListView(viewModel: FavouritesViewModel())
+            }.tabItem {
                 Image(systemName: "heart")
                 Text("Favorites")
             }

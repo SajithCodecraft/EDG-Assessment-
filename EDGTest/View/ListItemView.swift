@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ListItemView: View {
-    @EnvironmentObject var viewModel: ProductListViewModel
     let product: Product
+    let isFromFavourites: Bool
     
     var body: some View {
         VStack() {
@@ -37,9 +37,24 @@ struct ListItemView: View {
                         .cornerRadius(4)
                 }
                 Button(action: {
-//                            self.isFavorited.toggle()
+                    if isFromFavourites {
+                        let viewModel = FavouritesViewModel()
+                        if product.isFavourites {
+                            viewModel.removeFromFavourites(product: product)
+                        } else {
+                            viewModel.addToFavourites(product: product)
+                        }
+                    } else {
+                        let viewModel = ProductListViewModel()
+                        if product.isFavourites {
+                            viewModel.removeFromFavourites(product: product)
+                        } else {
+                            viewModel.addToFavourites(product: product)
+                        }
+                    }
+                    
                 }) {
-                    Image(systemName: "heart")
+                    Image(systemName: product.isFavourites ? "heart.fill" : "heart")
                 }
             }
         }

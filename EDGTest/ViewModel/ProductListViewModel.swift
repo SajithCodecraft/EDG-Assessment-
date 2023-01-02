@@ -29,7 +29,8 @@ class ProductListViewModel: ObservableObject {
         }
         receiveValue: { [weak self] (responseData: ProductList) in
             guard let proudcts = responseData.products else { return }
-            self?.products = proudcts
+            let favourites: [Product] = self?.storageManager.array(forKey: "favourites") ?? []
+            self?.products = self?.updateFavouritesValue(products: proudcts, favouriteList: favourites) ?? []
         }.store(in: &cancellables)
     }
     
@@ -37,11 +38,23 @@ class ProductListViewModel: ObservableObject {
         var favourites: [Product] = storageManager.array(forKey: "favourites") ?? []
         favourites.append(product)
         storageManager.save(array: favourites, forKey: "favourites")
+        fetchProducts()
     }
     
     func removeFromFavourites(product: Product) {
         var favourites: [Product] = storageManager.array(forKey: "favourites") ?? []
         favourites = favourites.filter { $0.id != product.id }
         storageManager.save(array: favourites, forKey: "favourites")
+        fetchProducts()
+    }
+    
+    func updateFavouritesValue(products: [Product], favouriteList: [Product]) -> [Product] {
+        return products.map { product -> Product in
+            var newProduct = product
+            if favouriteList.firstIndex(where: { $0.id == product.id }) != nil {
+                newProduct.isFavourites = true
+            }
+            return newProduct
+        }
     }
 }
