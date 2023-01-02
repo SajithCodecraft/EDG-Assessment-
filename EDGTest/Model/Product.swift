@@ -28,6 +28,7 @@ struct Product: Codable {
     let saleUnitPrice: Double
     let totalReviewCount: Int
     let isDeliveryOnly, isDirectFromSupplier: Bool
+    var isFavourites = false
 
     enum CodingKeys: String, CodingKey {
         case citrusID = "citrusId"

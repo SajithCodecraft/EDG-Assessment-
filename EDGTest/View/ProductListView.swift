@@ -10,8 +10,10 @@ import SwiftUI
 struct ProductListView: View {
     @ObservedObject var viewModel: ProductListViewModel
 
+    private let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+    
     var body: some View {
-        List {
+        LazyVGrid(columns: columns) {
             ForEach(viewModel.products, id: \.id) { product in
                 HStack {
                     Image(product.imageURL)
@@ -32,7 +34,7 @@ struct ProductListView: View {
                         Image(systemName: "cart")
                     }
                     Button(action: {
-                        // toggle favorite status for product
+                        viewModel.addToFavourites(product: product)
                     }) {
                         Image(systemName: "heart")
                     }

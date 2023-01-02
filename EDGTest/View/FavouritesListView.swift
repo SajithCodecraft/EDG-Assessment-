@@ -1,5 +1,5 @@
 //
-//  FavouritesView.swift
+//  FavouritesListView.swift
 //  EDGTest
 //
 //  Created by sajith on 02/01/23.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct FavoritesView: View {
-    @State var products: [Product] = []
+struct FavouritesListView: View {
+    @ObservedObject var viewModel: FavouritesViewModel
 
     var body: some View {
         List {
-            ForEach(products, id: \.id) { product in
+            ForEach(viewModel.products, id: \.id) { product in
                 HStack {
                     Image(product.imageURL)
                         .resizable()
@@ -27,21 +27,26 @@ struct FavoritesView: View {
                     }
                     Spacer()
                     Button(action: {
-                        // delete product from favorites
+                        // add product to cart
                     }) {
-                        Image(systemName: "heart.slash")
+                        Image(systemName: "cart")
+                    }
+                    Button(action: {
+                        // toggle favorite status for product
+                    }) {
+                        Image(systemName: "heart")
                     }
                 }
             }
+        }.onAppear {
+            viewModel.fetchFavouritesProducts()
         }
-        .navigationBarTitle("Favorites")
+        .navigationBarTitle("Product List")
     }
 }
 
-struct FavoritesView_Previews: PreviewProvider {
+struct FavouritesListView_Previews: PreviewProvider {
     static var previews: some View {
-        FavoritesView()
+        FavouritesListView(viewModel: FavouritesViewModel())
     }
 }
-
-

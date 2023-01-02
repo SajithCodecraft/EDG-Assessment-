@@ -15,7 +15,7 @@ struct ContentView: View {
                 Image(systemName: "cart")
                 Text("Product List")
             }
-            FavoritesView()
+            FavouritesListView(viewModel: FavouritesViewModel())
                 .tabItem {
                 Image(systemName: "heart")
                 Text("Favorites")
