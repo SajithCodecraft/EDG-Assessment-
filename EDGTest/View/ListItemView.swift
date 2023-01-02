@@ -1,5 +1,5 @@
 //
-//  ProductDetailView.swift
+//  ListItemView.swift
 //  EDGTest
 //
 //  Created by sajith on 02/01/23.
@@ -7,44 +7,44 @@
 
 import SwiftUI
 
-struct ProductDetailView: View {
+struct ListItemView: View {
     @EnvironmentObject var viewModel: ProductListViewModel
-    var product: Product
-
+    let product: Product
+    
     var body: some View {
         VStack() {
             AsyncImage(url: URL(string: product.imageURL)!)
                 .foregroundColor(.white)
             Text(product.title)
                 .bold()
-                .lineLimit(2)
+                .lineLimit(1)
                 .multilineTextAlignment(.center)
             if let price = product.price.first?.value, let priceStr = String(price) {
                     Text(priceStr + "$")
                     .bold()
                     .multilineTextAlignment(.center)
             }
-            HStack(spacing: 10) {
+            HStack(spacing: 20) {
+                
                 Button(action: {
                     // Add product to cart
                 }) {
                     Text("Add to Cart")
+                        .foregroundColor(.white)
+                        .padding()
+                        .bold()
+                        .background(Color.blue)
+                        .cornerRadius(4)
                 }
                 Button(action: {
-                    viewModel.addToFavourites(product: product)
+//                            self.isFavorited.toggle()
                 }) {
                     Image(systemName: "heart")
                 }
             }
         }
-        .padding()
-        .navigationBarTitle(Text(product.title), displayMode: .inline)
-        .navigationBarItems(trailing:
-            Button(action: {
-                // toggle favorite status for product
-            }) {
-                Image(systemName: "heart")
-            }
-        )
+        .padding(10)
+        .background(.white)
+        .cornerRadius(10)
     }
 }

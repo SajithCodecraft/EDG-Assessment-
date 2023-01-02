@@ -9,39 +9,18 @@ import SwiftUI
 
 struct FavouritesListView: View {
     @ObservedObject var viewModel: FavouritesViewModel
-
+    
     var body: some View {
-        List {
-            ForEach(viewModel.products, id: \.id) { product in
-                HStack {
-                    Image(product.imageURL)
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                    VStack(alignment: .leading) {
-                        Text(product.title)
-                            .font(.headline)
-                        if let price = product.price.first?.value, let priceStr = String(price) {
-                            Text(priceStr)
-                                .font(.subheadline)
-                        }
-                    }
-                    Spacer()
-                    Button(action: {
-                        // add product to cart
-                    }) {
-                        Image(systemName: "cart")
-                    }
-                    Button(action: {
-                        // toggle favorite status for product
-                    }) {
-                        Image(systemName: "heart")
-                    }
+        ScrollView {
+            LazyVGrid(columns:[GridItem(.flexible()), GridItem(.flexible())], alignment: .center, spacing: 10) {
+                ForEach(viewModel.products, id: \.id) { product in
+                    ListItemView(product: product).environmentObject(viewModel)
                 }
             }
+            .background(Color(white: 0.9))
         }.onAppear {
-            viewModel.fetchFavouritesProducts()
+                viewModel.fetchFavouritesProducts()
         }
-        .navigationBarTitle("Product List")
     }
 }
 

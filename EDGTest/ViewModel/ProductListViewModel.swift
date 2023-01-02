@@ -27,10 +27,10 @@ class ProductListViewModel: ObservableObject {
                 self?.isFailed = false
             }
         }
-    receiveValue: { [weak self] (responseData: ProductList) in
-        guard let proudcts = responseData.products else { return }
-        self?.products = proudcts
-    }.store(in: &cancellables)
+        receiveValue: { [weak self] (responseData: ProductList) in
+            guard let proudcts = responseData.products else { return }
+            self?.products = proudcts
+        }.store(in: &cancellables)
     }
     
     func addToFavourites(product: Product) {

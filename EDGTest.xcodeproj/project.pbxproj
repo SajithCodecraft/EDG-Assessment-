@@ -26,6 +26,7 @@
 		0DD35EFD2962D28A001DE3BE /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD35EFC2962D28A001DE3BE /* StorageManager.swift */; };
 		0DD35EFF2962E08F001DE3BE /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD35EFE2962E08F001DE3BE /* FavouritesViewModel.swift */; };
 		0DD35F012962EBCA001DE3BE /* FavouritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD35F002962EBCA001DE3BE /* FavouritesListView.swift */; };
+		0DD35F062962F53B001DE3BE /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD35F052962F53B001DE3BE /* ListItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		0DD35EFC2962D28A001DE3BE /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0DD35EFE2962E08F001DE3BE /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		0DD35F002962EBCA001DE3BE /* FavouritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListView.swift; sourceTree = "<group>"; };
+		0DD35F052962F53B001DE3BE /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				0DD35EBA2962ACA4001DE3BE /* ContentView.swift */,
 				0DD35EE22962C10F001DE3BE /* ProductListView.swift */,
 				0DD35F002962EBCA001DE3BE /* FavouritesListView.swift */,
+				0DD35F052962F53B001DE3BE /* ListItemView.swift */,
 				0DD35EE72962C18D001DE3BE /* ProductDetailView.swift */,
 			);
 			path = View;
@@ -335,6 +338,7 @@
 			files = (
 				0DD35EEF2962C871001DE3BE /* ProductListViewModel.swift in Sources */,
 				0DD35EF82962C91B001DE3BE /* URLRequestExtension.swift in Sources */,
+				0DD35F062962F53B001DE3BE /* ListItemView.swift in Sources */,
 				0DD35EE32962C10F001DE3BE /* ProductListView.swift in Sources */,
 				0DD35EE82962C18D001DE3BE /* ProductDetailView.swift in Sources */,
 				0DD35F012962EBCA001DE3BE /* FavouritesListView.swift in Sources */,
