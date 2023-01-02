@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    let isFromFavourites: Bool
+    @EnvironmentObject var productListViewModel: ProductListViewModel
+    @EnvironmentObject var favouritesViewModel: FavouritesViewModel
     var product: Product
+    let isFromFavourites: Bool
 
     var body: some View {
         VStack() {
@@ -42,18 +44,16 @@ struct ProductDetailView: View {
         .navigationBarItems(trailing:
             Button(action: {
                 if isFromFavourites {
-                    let viewModel = FavouritesViewModel()
                     if product.isFavourites {
-                        viewModel.removeFromFavourites(product: product)
+                        favouritesViewModel.removeFromFavourites(product: product)
                     } else {
-                        viewModel.addToFavourites(product: product)
+                        favouritesViewModel.addToFavourites(product: product)
                     }
                 } else {
-                    let viewModel = ProductListViewModel()
                     if product.isFavourites {
-                        viewModel.removeFromFavourites(product: product)
+                        productListViewModel.removeFromFavourites(product: product)
                     } else {
-                        viewModel.addToFavourites(product: product)
+                        productListViewModel.addToFavourites(product: product)
                     }
                 }
             }) {

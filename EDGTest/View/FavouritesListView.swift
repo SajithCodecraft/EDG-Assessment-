@@ -15,9 +15,9 @@ struct FavouritesListView: View {
             LazyVGrid(columns:[GridItem(.flexible()), GridItem(.flexible())], alignment: .center, spacing: 10) {
                 ForEach(viewModel.products, id: \.id) { product in
                     NavigationLink {
-                        ProductDetailView(isFromFavourites: true, product: product)
+                        ProductDetailView(product: product, isFromFavourites: true).environmentObject(viewModel)
                     } label: {
-                        ListItemView(product: product, isFromFavourites: true)
+                        ListItemView(product: product, isFromFavourites: true).environmentObject(viewModel)
                     }                }
             }
             .background(Color(white: 0.9))
